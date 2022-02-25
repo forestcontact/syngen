@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "cornflowerblue", "id": "v,  make a logical or\ncausal connection", "label": "v,  make a logical or\ncausal connection", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "link", "label": "link", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "remember", "label": "remember", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "interrelate", "label": "interrelate", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "correlate", "label": "correlate", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "identify", "label": "identify", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "free-associate", "label": "free-associate", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "mean", "label": "mean", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "have in mind", "label": "have in mind", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "think of", "label": "think of", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "link up", "label": "link up", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "connect", "label": "connect", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "tie in", "label": "tie in", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "relate", "label": "relate", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "associate", "label": "associate", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "colligate", "label": "colligate", "shape": "dot", "size": 10}, {"color": "cornflowerblue", "id": "v,  connect, fasten, or\nput together two or more\npieces", "label": "v,  connect, fasten, or\nput together two or more\npieces", "shape": "dot", "size": 10}, {"color": "cornflowerblue", "id": "v,  be or become joined\nor united or linked", "label": "v,  be or become joined\nor united or linked", "shape": "dot", "size": 10}, {"color": "cornflowerblue", "id": "v,  link with or as with\na yoke", "label": "v,  link with or as with\na yoke", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "conjoin", "label": "conjoin", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "join", "label": "join", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "ground", "label": "ground", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "attach", "label": "attach", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "daisy-chain", "label": "daisy-chain", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "tie", "label": "tie", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "interlink", "label": "interlink", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "interconnect", "label": "interconnect", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "tee", "label": "tee", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "put through", "label": "put through", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "hitch", "label": "hitch", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "interdepend", "label": "interdepend", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "hang together", "label": "hang together", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "bridge", "label": "bridge", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "bridge over", "label": "bridge over", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "syndicate", "label": "syndicate", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "articulate", "label": "articulate", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "complect", "label": "complect", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "unite", "label": "unite", "shape": "dot", "size": 10}, {"color": "darkseagreen", "id": "yoke", "label": "yoke", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "v,  make a logical or\ncausal connection", "to": "link", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "remember", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "interrelate", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "correlate", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "identify", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "free-associate", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "mean", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "have in mind", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "think of", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "link up", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "connect", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "tie in", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "relate", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "associate", "weight": 1}, {"from": "v,  make a logical or\ncausal connection", "to": "colligate", "weight": 1}, {"from": "link", "to": "v,  connect, fasten, or\nput together two or more\npieces", "weight": 1}, {"from": "link", "to": "v,  be or become joined\nor united or linked", "weight": 1}, {"from": "link", "to": "v,  link with or as with\na yoke", "weight": 1}, {"from": "link up", "to": "v,  connect, fasten, or\nput together two or more\npieces", "weight": 1}, {"from": "link up", "to": "v,  be or become joined\nor united or linked", "weight": 1}, {"from": "connect", "to": "v,  connect, fasten, or\nput together two or more\npieces", "weight": 1}, {"from": "connect", "to": "v,  be or become joined\nor united or linked", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "conjoin", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "join", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "ground", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "attach", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "daisy-chain", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "tie", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "interlink", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "interconnect", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "tee", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "put through", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "hitch", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "interdepend", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "hang together", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "bridge", "weight": 1}, {"from": "v,  connect, fasten, or\nput together two or more\npieces", "to": "bridge over", "weight": 1}, {"from": "join", "to": "v,  be or become joined\nor united or linked", "weight": 1}, {"from": "interlink", "to": "v,  be or become joined\nor united or linked", "weight": 1}, {"from": "interconnect", "to": "v,  be or become joined\nor united or linked", "weight": 1}, {"from": "v,  be or become joined\nor united or linked", "to": "syndicate", "weight": 1}, {"from": "v,  be or become joined\nor united or linked", "to": "articulate", "weight": 1}, {"from": "v,  be or become joined\nor united or linked", "to": "complect", "weight": 1}, {"from": "v,  be or become joined\nor united or linked", "to": "unite", "weight": 1}, {"from": "v,  link with or as with\na yoke", "to": "yoke", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
