@@ -8,6 +8,8 @@ Both scripts take an argument for part of speech. This can be either a single ty
 
 Depth levels above 2 are not recommended, due to combinatorial explosion 😅 
 
+Examples in output.txt and output.html were generated with settings `--depth 0 --pos v link`
+
 ## syngen.py
 
 ```
